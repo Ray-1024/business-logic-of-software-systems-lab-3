@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Spring Boot [Remote]" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <option name="ALTERNATIVE_JRE_PATH" value="17" />
+    <module name="src" />
+    <target name="s335135@helios.se.ifmo.ru:2222" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="ray1024.blps.SrcApplication" />
+    <option name="VM_PARAMETERS" value="-Xmx1024m" />
+    <method v="2" />
+  </configuration>
+</component>
