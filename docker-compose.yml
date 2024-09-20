@@ -1,0 +1,37 @@
+version: '1'
+
+services:
+
+  app_1:
+    image: 'openjdk:17-jdk-alpine'
+    depends_on:
+      - postgres
+      - kafka
+    restart: always
+    ports:
+      - "22400:22400"
+
+  postgres:
+    image: 'postgres:16-alpine'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    restart: always
+    ports:
+      - "5432:5432"
+      -
+  zookeeper:
+    image: 'wurstmeister/zookeeper'
+    expose:
+      - "2181"
+  kafka:
+    image: 'wurstmeister/kafka'
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
